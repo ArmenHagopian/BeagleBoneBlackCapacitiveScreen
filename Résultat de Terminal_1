@@ -1,0 +1,42 @@
+Last login: Thu Mar 23 13:22:42 on console
+mbp-de-gaetan-3:~ gaetanguru$ ssh debian@192.168.6.2
+The authenticity of host '192.168.6.2 (192.168.6.2)' can't be established.
+ECDSA key fingerprint is SHA256:1nOcnfOGAak6TfnZFn1N6Abn2l1JEYlGdA68ADq4VjA.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '192.168.6.2' (ECDSA) to the list of known hosts.
+Debian GNU/Linux 8
+
+BeagleBoard.org Debian Image 2017-03-19
+
+Support/FAQ: http://elinux.org/Beagleboard:BeagleBoneBlack_Debian
+
+default username:password is [debian:temppwd]
+
+debian@192.168.6.2's password: 
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Sun Mar 19 14:24:07 2017 from mbpdesebastien3
+debian@beaglebone:~$ sudo su
+[sudo] password for debian: 
+root@beaglebone:/home/debian# cd /sys/class/leds/beaglebone:green:usr2
+root@beaglebone:/sys/class/leds/beaglebone:green:usr2# ls
+brightness  device  max_brightness  power  subsystem  trigger  uevent
+root@beaglebone:/sys/class/leds/beaglebone:green:usr2# ls -l
+total 0
+-rw-r--r-- 1 root root 4096 Mar 19 14:40 brightness
+lrwxrwxrwx 1 root root    0 Mar 19 14:40 device -> ../../../leds
+-r--r--r-- 1 root root 4096 Mar 19 14:40 max_brightness
+drwxr-xr-x 2 root root    0 Mar 19 14:40 power
+lrwxrwxrwx 1 root root    0 Jan  1  2000 subsystem -> ../../../../../class/leds
+-rw-r--r-- 1 root root 4096 Mar 19 14:40 trigger
+-rw-r--r-- 1 root root 4096 Jan  1  2000 uevent
+root@beaglebone:/sys/class/leds/beaglebone:green:usr2# cat trigger 
+[none] rc-feedback kbd-scrolllock kbd-numlock kbd-capslock kbd-kanalock kbd-shiftlock kbd-altgrlock kbd-ctrllock kbd-altlock kbd-shiftllock kbd-shiftrlock kbd-ctrlllock kbd-ctrlrlock nand-disk usb-gadget usb-host mmc0 mmc1 timer oneshot heartbeat backlight gpio default-on 
+root@beaglebone:/sys/class/leds/beaglebone:green:usr2# echo none > trigger
+root@beaglebone:/sys/class/leds/beaglebone:green:usr2# echo 255 > brightness
+root@beaglebone:/sys/class/leds/beaglebone:green:usr2# cd /sys/class/leds/beaglebone:green:usr3
